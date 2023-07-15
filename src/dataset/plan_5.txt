@@ -1,0 +1,4 @@
+Goal: My goal is to watch a movie on Netflix.
+1. Sign up for a Netflix account.
+2. Choose a movie to watch.
+3. Watch the movie.
