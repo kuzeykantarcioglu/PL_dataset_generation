@@ -1,5 +1,0 @@
-Goal: Watch a movie on a streaming service
-1. Choose a streaming service 
-2. Choose a movie 
-3. Choose a time to watch the movie 
-4. Watch the movie
