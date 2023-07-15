@@ -37,7 +37,16 @@ def call_GPT(prompt):
 
 #goal generation
 def get_goal_prompt():
-    prompt = "Write a single goal about a subject of your choice. They should be on a subject that's dfferent from the examples: \n Example goals:\n"
+    w1_list = ["Write 1 goal ", "Generate a single goal "]
+    w2_list = ["on ", " regarding ", "relating to "]
+    w3_list = ["a subject ", " a topic ", "an area "]
+    w4_list = ["chosen at random, unrelated to the examples", " of your choice, different from the examples ", "different to the examples"]
+    w1 = random.sample ( w1_list , 1 )[0]
+    w2 = random.sample ( w2_list , 1 )[0]
+    w3 = random.sample ( w3_list , 1 )[0]
+    w4 = random.sample ( w4_list , 1 )[0]
+    prompt= f"{w1}, {w2} {w3} {w4}.\n\n"
+    prompt+= "Example goals:"
     chosen_goals= random.sample(goals, 3)
     for goal in chosen_goals:
         prompt+= goal + '\n'
@@ -60,11 +69,11 @@ def generate_prompt_prefix ():
 
 def main():
     print("Generating dataset")
-    goal_num = 1
+    goal_num = 3
     for i in range(goal_num):
         goals.append(call_GPT(get_goal_prompt()))
-    for goal_index in range(len(goals)):
-        plan = call_GPT(generate_prompt_prefix() + "\n Goal: "+ goals[goal_index])
+    for goal_index in range(goal_num,len(goals)):
+        plan = call_GPT(generate_prompt_prefix() + " Steps should be in the form of a numbered list.\n Goal: "+ goals[goal_index])
         with open('dataset/plan_%i.txt'%goal_index, 'w') as f:
             f.write("Goal: "+ goals[goal_index]+"\n"+plan)
         print(goals[goal_index], '\n'+ plan)
